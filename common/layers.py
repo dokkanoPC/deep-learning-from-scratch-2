@@ -4,7 +4,7 @@ from common.config import GPU
 from common.functions import softmax, cross_entropy_error
 
 
-class MatMul:
+class MatMul:#行列の積
     def __init__(self, W):
         self.params = [W]
         self.grads = [np.zeros_like(W)]
@@ -24,7 +24,7 @@ class MatMul:
         return dx
 
 
-class Affine:
+class Affine:#全結合層
     def __init__(self, W, b):
         self.params = [W, b]
         self.grads = [np.zeros_like(W), np.zeros_like(b)]
@@ -48,6 +48,7 @@ class Affine:
 
 
 class Softmax:
+    #ソフトマックス関数(確率分布に変換する関数(０から１の範囲に変換する関数、足し合わせると１になる))
     def __init__(self):
         self.params, self.grads = [], []
         self.out = None
@@ -63,7 +64,7 @@ class Softmax:
         return dx
 
 
-class SoftmaxWithLoss:
+class SoftmaxWithLoss:#ソフトマックス関数と交差エントロピー誤差をまとめた層
     def __init__(self):
         self.params, self.grads = [], []
         self.y = None  # softmaxの出力
